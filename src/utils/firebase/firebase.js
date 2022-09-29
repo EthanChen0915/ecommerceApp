@@ -1,10 +1,13 @@
 // Import the functions you need from the SDKs you need
+import { Password } from "@mui/icons-material";
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import {
   getAuth,
   signInWithRedirect,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
@@ -34,7 +37,11 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  addtionalInfo = {}
+) => {
+  if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
@@ -49,10 +56,16 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         displayName,
         email,
         createAt,
+        ...addtionalInfo,
       });
     } catch (error) {
       console.log("something wrong with setDoc", error);
     }
   }
   return userDocRef;
+};
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
 };
