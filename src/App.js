@@ -6,14 +6,7 @@ import Navigation from "./navigation/navigation.js";
 import Authentication from "./routes/authentication/Authentication.jsx";
 import { UserContext } from "./context/context.jsx";
 import { useContext } from "react";
-
-const Shop = () => {
-  return (
-    <div>
-      <div>im am shop</div>
-    </div>
-  );
-};
+import Shop from "./routes/shop/Shop.jsx";
 
 const App = () => {
   const { currentUser } = useContext(UserContext);

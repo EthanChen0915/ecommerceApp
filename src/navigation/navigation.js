@@ -4,11 +4,14 @@ import { Fragment, useContext } from "react";
 import { ReactComponent as Crwnlog } from "../asset/crown1.svg";
 import "./navigation.scss";
 import { UserContext } from "../context/context";
+import { CartContext } from "../context/cartcontext";
 import { signOutUser } from "../utils/firebase/firebase";
+import CartIcon from "../component/CartIcon/CartIcon";
+import CartDropDown from "../component/CartDropDown/CartDropDown";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
+  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
 
   const signOutHandler = async () => {
     await signOutUser();
@@ -38,7 +41,9 @@ const Navigation = () => {
               <h2>SIGN IN</h2>
             </Link>
           )}
+          <CartIcon />
         </div>
+        {isCartOpen && <CartDropDown />}
       </div>
       <Outlet />
     </Fragment>
