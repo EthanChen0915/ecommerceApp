@@ -4,6 +4,8 @@ import React from "react";
 import Navigation from "./navigation/navigation.js";
 
 import Authentication from "./routes/authentication/Authentication.jsx";
+import { UserContext } from "./context/context.jsx";
+import { useContext } from "react";
 
 const Shop = () => {
   return (
@@ -14,12 +16,17 @@ const Shop = () => {
 };
 
 const App = () => {
+  const { currentUser } = useContext(UserContext);
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path="shop" element={<Shop />} />
-        <Route path="auth" element={<Authentication />} />
+        {currentUser ? (
+          <Route path="auth" element={<Home />} />
+        ) : (
+          <Route path="auth" element={<Authentication />} />
+        )}
       </Route>
     </Routes>
   );

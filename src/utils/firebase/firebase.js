@@ -1,12 +1,12 @@
 // Import the functions you need from the SDKs you need
-import { Password } from "@mui/icons-material";
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import {
   getAuth,
-  signInWithRedirect,
+  signOut,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
@@ -73,4 +73,10 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 export const signInWithAuthUserEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
+};
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStatedChangedListener = (callback) => {
+  onAuthStateChanged(auth, callback);
 };
