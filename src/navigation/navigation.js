@@ -17,9 +17,13 @@ const Navigation = () => {
     await signOutUser();
   };
 
+  const closeCartHandler = (e) => {
+    console.log(e.target);
+  };
+
   return (
     <Fragment>
-      <div className="navigation">
+      <div className="navigation" onClick={closeCartHandler}>
         <div>
           <Link className="logo-container" to="/">
             <Crwnlog className="logo" />
