@@ -7,6 +7,7 @@ import Authentication from "./routes/authentication/Authentication.jsx";
 import { UserContext } from "./context/context.jsx";
 import { useContext } from "react";
 import Shop from "./routes/shop/Shop.jsx";
+import Checkout from "./routes/checkout/Checkout.jsx";
 
 const App = () => {
   const { currentUser } = useContext(UserContext);
@@ -20,6 +21,7 @@ const App = () => {
         ) : (
           <Route path="auth" element={<Authentication />} />
         )}
+        <Route path="checkout" element={<Checkout />} />
       </Route>
     </Routes>
   );
