@@ -67,9 +67,9 @@ export const CartProvider = ({ children }) => {
   const deleteItemFromCart = (productToRemove) => {
     setCartItems(deleteCartItem(cartItems, productToRemove));
   };
-  const removeItemEntirely = (itemRemoveEntirly) => {
+  const removeItemEntirely = (itemRemoveEntirly) =>
     setCartItems(removeItemFromCartEntirly(cartItems, itemRemoveEntirly));
-  };
+
   const value = {
     isCartOpen,
     setIsCartOpen,
